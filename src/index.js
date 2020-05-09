@@ -15,7 +15,8 @@ class ToDoList extends React.Component {
     addItem = () => {
         if (this.state.input !== '') {
             this.setState(prevState => ({
-                toDoItems: [...prevState.toDoItems, this.state.input]
+                toDoItems: [...prevState.toDoItems, this.state.input],                
+                input: ''
             }));
         }
     }
@@ -26,14 +27,10 @@ class ToDoList extends React.Component {
         });
     }
 
-    renderItem(value) {
-        return <ToDoItem value={this.state.input} />;
-    }
-
     render() {
         return (
             <div>
-                <input type="text" onChange={this.handleInputChange} />
+                <input type="text" onChange={this.handleInputChange} value={this.state.input}/>
                 <button className="add-item" onClick={this.addItem}>+</button>
                 <ol className="to-do-list">
                     {
@@ -69,6 +66,7 @@ class ToDoItem extends React.Component {
                     checked={this.state.isChecked}
                 />
                 {this.props.value}
+                <button className="dele-item">-</button>
             </li>
         );
     }
